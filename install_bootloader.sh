@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+if [[ ! -d /sys/firmware/efi/ ]]; then
+    exit 0
+fi
+
+if [[ $# < 3 ]]; then
+    exit 0
+fi
+
+. /etc/os-release
+DISTRO=$(echo ${ID} | sed -e 's/rhel/redhat/' -e 's/\"//')
+
+PKG=${1}
+VER=${2}
+ARCH=${3}
+if [[ $# > 3 ]]; then
+    DISTRO=${4}
+fi
+
+FROM_DIR=/usr/lib/${PKG}/${VER}/${ARCH}/EFI/${DISTRO}
+EFI_DIR=/boot/efi/EFI/${DISTRO}
+
+if [[ -d ${EFI_DIR}/b/ ]]; then
+    EFI_DIR=${EFI_DIR}/b
+    efibootmgr | grep BootNext
+    status=$(echo $?)
+    if [[ $status -eq 1 ]]; then
+        NEW_BOOT_ENTRY=$(efibootmgr | grep "_new" | cut -d'*' -f1)
+        if [[ -z ${NEW_BOOT_ENTRY} ]]; then
+# first check if create_boot_path exists / is installed, then run it
+            create_boot_path.sh
+            NEW_BOOT_ENTRY=$(efibootmgr | grep "_new" | cut -d'*' -f1)
+        fi 
+        NEW_BOOT_ENTRY=$(echo $NEW_BOOT_ENTRY | sed -i 's/Boot//')
+        efibootmgr -n $NEW_BOOT_ENTRY
+    fi
+fi
+
+cp ${FROM_DIR}/* ${EFI_DIR}/.
