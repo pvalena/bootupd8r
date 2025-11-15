@@ -22,7 +22,7 @@ bootupd8r-$(VERSION).tar.xz :
 		Makefile \
 	| xz > $@
 
-bootupd8r-$(VR).src.rpm : bootupd8r.spec bootupd84-$(VERSION).tar.xz
+bootupd8r-$(VR).src.rpm : bootupd8r.spec bootupd8r-$(VERSION).tar.xz
 	rpmbuild $(RPMBUILD_ARGS) -bs $<
 
 bootupd8r-$(KVRA).rpm : bootupd8r-$(VR).src.rpm
