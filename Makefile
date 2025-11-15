@@ -2,6 +2,7 @@
 # Copyright Marta Lewandowska <mlewando@redhat.com
 #
 
+TOPDIR ?= .
 VERSION := 1
 RELEASE := 1
 OS_DIST := $(shell rpm --eval '%{dist}')
