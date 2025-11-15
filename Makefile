@@ -38,10 +38,11 @@ bootupd8r-$(KVRA).rpm : bootupd8r-$(VR).src.rpm
 	mock -r "$(MOCK_ROOT_NAME)" --rebuild bootupd8r-$(VR).src.rpm --no-clean
 
 install :
-	install -m 0755 -d "/usr/lib/bootloader/install_bootloader"
-	install -m 0600 -d "/usr/sbin/set_boot_entry"
-	install -m 0600 -d "/usr/sbin/create_boot_path"
-	install -m 0600 -d "/etc/systemd/system/AB-boot.service"
+	install -m 0755 -d "/usr/lib/bootloader"
+	install -m 0644 -t "/usr/lib/bootloader/install_bootloader"
+	install -m 0600 -t "/usr/sbin/set_boot_entry"
+	install -m 0600 -t "/usr/sbin/create_boot_path"
+	install -m 0600 -t "/etc/systemd/system/AB-boot.service"
 
 clean :
 	@rm -vf bootupd8r-$(VERSION).tar.xz
