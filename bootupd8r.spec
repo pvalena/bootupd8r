@@ -14,6 +14,7 @@ Source0: bootupd8r-%{version}.tar.xz
 
 BuildRequires: git
 BuildRequires: make
+BuildRequires: systemd
 
 # For %%_userunitdir and %%systemd_* macros
 BuildRequires:  systemd-rpm-macros
