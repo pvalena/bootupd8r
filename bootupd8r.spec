@@ -31,6 +31,7 @@ bootupd8r creates a fallback mechanism on UEFI for installing new boot loaders.
 make all
 
 %install
+install -d -m 0755 %{buildroot}%{_prefix}/lib/bootloader
 install -D -m 0755 -t %{buildroot}%{_userunitdir} \
         AB-boot.service
 install -d -m 0755 %{buildroot}%{_unitdir}/multi-user.target.wants
