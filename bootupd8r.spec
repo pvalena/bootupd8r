@@ -44,8 +44,10 @@ ln -s ../AB-boot.service \
 %defattr(-,root,root,-)
 %dir %{_prefix}/lib/bootloader
 %{_prefix}/lib/bootloader/install_bootloader
+%dir %{_sbindir}
 %{_sbindir}/set_boot_entry
 %{_sbindir}/create_boot_path
+%dir %{_unitdir}
 %{_unitdir}/AB-boot.service
 
 %posttrans

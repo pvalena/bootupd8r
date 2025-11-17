@@ -41,9 +41,9 @@ bootupd8r-$(KVRA).rpm : bootupd8r-$(VR).src.rpm
 install :
 	install -m 0755 -d "${DESTDIR}/usr/lib/bootloader"
 	install -m 0755 -t "${DESTDIR}/usr/lib/bootloader" install_bootloader
-	install -m 0755 -d "${DESTDIR}/usr/sbin/"
-	install -m 0755 -t "${DESTDIR}/usr/sbin/" create_boot_path
-	install -m 0755 -t "${DESTDIR}/usr/sbin/" set_boot_entry
+	install -m 0755 -d "${DESTDIR}/usr/sbin"
+	install -m 0755 -t "${DESTDIR}/usr/sbin" create_boot_path
+	install -m 0755 -t "${DESTDIR}/usr/sbin" set_boot_entry
 
 clean :
 	@rm -vf bootupd8r-$(VERSION).tar.xz
