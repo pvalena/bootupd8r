@@ -7,9 +7,7 @@ DESTDIR ?= temp
 VERSION := 1
 RELEASE := 1
 OS_DIST := $(shell rpm --eval '%{dist}')
-ARCH := $(shell rpm --eval '%{_build_arch}')
 VR := $(VERSION)-$(RELEASE)$(OS_DIST)
-KVRA := $(VERSION)-$(RELEASE).$(ARCH)
 RPMBUILD_ARGS := -D "_topdir $(TOPDIR)" \
                  -D '_builddir %{_topdir}' \
                  -D '_rpmdir %{_topdir}' \
@@ -34,7 +32,7 @@ bootupd8r-$(VERSION).tar.xz :
 bootupd8r-$(VR).src.rpm : bootupd8r.spec bootupd8r-$(VERSION).tar.xz
 	rpmbuild $(RPMBUILD_ARGS) -bs $<
 
-bootupd8r-$(KVRA).rpm : bootupd8r-$(VR).src.rpm
+bootupd8r-$(VR).noarch.rpm : bootupd8r-$(VR).src.rpm
 	mock  -r "$(MOCK_ROOT_NAME)" --installdeps bootupd8r-$(VR).src.rpm --cache-alterations --no-clean --no-cleanup-after
 	mock -r "$(MOCK_ROOT_NAME)" --rebuild bootupd8r-$(VR).src.rpm --no-clean
 
