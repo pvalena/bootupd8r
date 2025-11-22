@@ -43,8 +43,8 @@ install -m 0755 -t %{buildroot}%{_unitdir} multi-user.target.wants
 
 %files
 %defattr(-,root,root,-)
-%dir %{_bindir}/bootloader
-%{_bindir}/bootloader/install_bootloader
+%dir %{_prefix}/lib/bootloader
+%{_prefix}/lib/bootloader/install_bootloader
 %{_sbindir}/set_boot_entry
 %{_sbindir}/create_boot_path
 %{_unitdir}/AB-boot.service
