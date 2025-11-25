@@ -1,0 +1,35 @@
+
+# https://packit.dev/docs/configuration
+
+files_to_sync:
+  - bootupd8r.spec
+
+specfile_path: bootupd8r.spec
+
+upstream_package_name: bootupd8r
+downstream_package_name: bootupd8r
+
+jobs:
+- job: upstream_koji_build
+  trigger: pull_request
+  scratch: true
+  targets:
+    - fedora-all
+
+jobs:
+- job: copr_build
+  trigger: pull_request
+  targets:
+  - fedora-all
+
+# Run tests (via testing farm)
+- job: tests
+  trigger: pull_request
+  targets:
+    - fedora-all
+
+## Create Fedora dist-git PR
+#- job: propose_downstream
+#  trigger: release
+#  dist_git_branches:
+#    -
