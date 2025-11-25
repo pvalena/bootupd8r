@@ -1,57 +1,22 @@
 
 # Docs: https://packit.dev/docs/
 
-upstream_project_url: git@github.com:dracut-ng/dracut-ng.git
-
-## TODO: #####################
-# unify - the only difference
-
-#files_to_sync:
-#- src: .distro/
-#  dest: .
-#  delete: true
-#  filters:
-#  - protect .git*
-#  - protect sources
-#  - protect .fmf*
-#  - protect gating.yaml
-#  - protect plans.fmf
-#  - protect ci.fmf
-#  - exclude source-git.yaml
-#  - exclude .gitignore
-#  - exclude *.sh
-
 files_to_sync:
-  - .distro/dracut.spec
+  - .distro/bootupd8r.spec
 
-##############################
-
-sources:
-- path: dracut-ng-108.tar.gz
-  url: https://github.com/dracut-ng/dracut-ng/archive/refs/tags/108.tar.gz
-
-specfile_path: .distro/dracut.spec
+specfile_path: bootupd8r.spec
 
 patch_generation_ignore_paths:
-- .distro/
 - .packit.yml
+- .gitignore
 - .github/
 - .editorconfig
 - test/
 patch_generation_patch_id_digits: 1
 sync_changelog: true
 
-# TODO: #
-#upstream_ref: "108"
-upstream_ref: 97c5568ec42abd5e6035f0cfa9d319ae6ae4e50a
-
-upstream_package_name: dracut
-downstream_package_name: dracut
-
-#actions:
-#  post-upstream-clone:
-    # Use the current specfile
-#    - "cp pkgbuild/dracut.spec ."
+upstream_package_name: bootupd8r
+downstream_package_name: bootupd8r
 
 jobs:
 # Build test
